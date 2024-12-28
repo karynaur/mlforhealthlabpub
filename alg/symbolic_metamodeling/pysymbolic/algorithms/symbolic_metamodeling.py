@@ -151,7 +151,7 @@ class symbolic_metamodel:
         self.feature_expander = PolynomialFeatures(2, include_bias=False, interaction_only=True)
         self.X                = X
         self.X_new            = self.feature_expander.fit_transform(X) 
-        self.X_names          = self.feature_expander.get_feature_names()
+        self.X_names          = self.feature_expander.get_feature_names_out()
         
         if mode == "classification": 
         
@@ -188,7 +188,7 @@ class symbolic_metamodel:
         
         if reset_init_model:
             
-            self.init_model   = Ridge(alpha=.1, fit_intercept=False, normalize=True) #LinearRegression
+            self.init_model   = Ridge(alpha=.1, fit_intercept=False) #LinearRegression
             
             self.init_model.fit(self.X_init, self.Y_r)
     
